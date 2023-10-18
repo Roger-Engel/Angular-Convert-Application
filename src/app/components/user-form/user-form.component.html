@@ -48,7 +48,7 @@
         </div>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">{{ user.id === 0 ? 'Voeg toe' : 'Wijzig' }}</button>
-            <a routerLink="/users" class="btn btn-secondary ms-3">Terug naar gebruikerslijst</a>
+            <a (click)="navigateAndReload()" class="btn btn-secondary ms-3">Terug naar gebruikerslijst</a>
         </div>
     </form>
 </div>

@@ -56,4 +56,10 @@ export class UserFormComponent {
       this.user[field] = this.user[field].charAt(0).toUpperCase() + this.user[field].slice(1);
     }
   }
+
+  navigateAndReload() {
+    this.router.navigate(['/users']).then(() => {
+      window.location.reload();
+    });
+  }
 }
