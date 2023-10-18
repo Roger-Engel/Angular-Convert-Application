@@ -1,0 +1,54 @@
+<div class="container border border-black border-3 rounded mt-5 shadow">
+    <h2 class="m-3 justify-content-center">{{ user.id === 0 ? 'Voeg gebruiker toe' : 'Wijzig gebruiker' }}</h2>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="m-3">
+        <div class="form-group">
+            <label for="firstNameInput">Voornaam <span class="required">*</span></label>
+            <input type="text" class="form-control" name="firstNameInput" placeholder="Voornaam"
+                [(ngModel)]="user.firstName" #firstNameInput="ngModel" required
+                (input)="capitalizeFirstLetter('firstName')">
+        </div>
+        <div class="form-group">
+            <label for="infixInput">Tussenvoegsel</label>
+            <input type="text" class="form-control" name="infixInput" placeholder="Tussenvoegsel"
+                [(ngModel)]="user.infix" #infixInput="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="lastNameInput">Achternaam <span class="required">*</span></label>
+            <input type="text" class="form-control" name="lastNameInput" placeholder="Achternaam"
+                [(ngModel)]="user.lastName" #lastNameInput="ngModel" required
+                (input)="capitalizeFirstLetter('lastName')">
+        </div>
+        <div class="form-group">
+            <label for="postalCodeInput">Postcode <span class="required">*</span></label>
+            <input type="text" class="form-control" name="postalCodeInput" placeholder="Postcode"
+                [(ngModel)]="user.postalCode" #postalCodeInput="ngModel" required>
+        </div>
+        <div class="form-group">
+            <label for="houseNumberInput">Huisnummer <span class="required">*</span></label>
+            <input type="number" class="form-control" name="houseNumberInput" placeholder="Huisnummer"
+                [(ngModel)]="user.houseNumber" #houseNumberInput="ngModel" required>
+        </div>
+        <div class="form-group">
+            <label for="additionInput">Toevoeging</label>
+            <input type="text" class="form-control" name="additionInput" placeholder="Toevoeging"
+                [(ngModel)]="user.addition" #additionInput="ngModel"
+                (input)="capitalizeFirstLetter('addition')">
+        </div>
+        <div class="form-group">
+            <label for="cityInput">Stad <span class="required">*</span></label>
+            <input type="text" class="form-control" name="cityInput" placeholder="Stad" [(ngModel)]="user.city"
+                #cityInput="ngModel" required
+                (input)="capitalizeFirstLetter('city')">
+        </div>
+        <div class="form-group">
+            <label for="streetNameInput">Straatnaam <span class="required">*</span></label>
+            <input type="text" class="form-control" name="streetNameInput" placeholder="Straatnaam"
+                [(ngModel)]="user.streetName" #streetNameInput="ngModel" required
+                (input)="capitalizeFirstLetter('streetName')">
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">{{ user.id === 0 ? 'Voeg toe' : 'Wijzig' }}</button>
+            <a routerLink="/users" class="btn btn-secondary ms-3">Terug naar gebruikerslijst</a>
+        </div>
+    </form>
+</div>

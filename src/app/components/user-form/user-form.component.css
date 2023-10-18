@@ -1,0 +1,18 @@
+.custom-backdrop {
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.custom-modal-dialog {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.plusPointer:hover {
+    cursor: pointer;
+}
+
+.green-border {
+    border: 2px solid green;
+}

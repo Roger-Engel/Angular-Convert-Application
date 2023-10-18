@@ -1,0 +1,25 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 text-right d-flex justify-content-end">
+            <a [routerLink]="['/user-add']">
+                <fa-icon [icon]="faPlus" class="plusPointer fa fa-2x text-black"></fa-icon>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 " *ngFor="let user of users">
+            <div class="card mb-3">
+                <div class="card-body d-flex justify-content-between align-items-center shadow">
+                    <div class="name-container">
+                        <h5 class="card-title user-name">{{ user.firstName }} {{ user.infix }} {{ user.lastName }}</h5>
+                    </div>
+                    <div class="icon-row">
+                        <a [routerLink]="['/details', user.id]"><fa-icon [icon]="faInfoCircle" class="me-2"></fa-icon></a>
+                        <a [routerLink]="['/user-edit', user.id]"><fa-icon [icon]="faPencil" class="text-black"></fa-icon></a>
+                        <fa-icon [icon]="faTrash" class="ms-2 text-danger" (click)="deleteUser(user.id)"></fa-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

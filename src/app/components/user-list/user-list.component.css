@@ -1,0 +1,23 @@
+.plusPointer:hover {
+    cursor: pointer;
+}
+
+.user-name {
+    white-space: nowrap;
+    max-width: 100%;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex-shrink: 1;
+}
+
+.icon-row {
+    display: flex;
+    align-items: center;
+}
+
+.name-container {
+    display: flex;
+    align-items: center;
+    max-width: 75%;
+}
