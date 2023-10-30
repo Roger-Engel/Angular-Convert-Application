@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService, User } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,6 +22,8 @@ export class UserFormComponent {
     streetName: ''
   }
 
+  @ViewChild('userForm',  {static: false}) userForm: NgForm;
+
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
     this.route.paramMap.subscribe((params) => {
       const userId = Number(params.get('id'));
@@ -37,18 +39,8 @@ export class UserFormComponent {
     } else {
       this.userService.updateUser(this.user);
     }
-    this.user = { 
-      id: 0, 
-      firstName: '', 
-      infix: '', 
-      lastName: '', 
-      postalCode: '', 
-      houseNumber: 0, 
-      addition: '', 
-      city: '', 
-      streetName: '' 
-    };
-    this.router.navigate(['/users']);
+    this.userForm.resetForm();
+    this.navigateAndReload();
   }
 
   capitalizeFirstLetter(field: string) {
