@@ -12,22 +12,20 @@ import { faInfoCircle} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit{
-  faPencil = faPencil;
-  faTrash = faTrash;
-  faPlus = faPlus;
-  faInfoCircle = faInfoCircle;
+  public faPencil = faPencil;
+  public faTrash = faTrash;
+  public faPlus = faPlus;
+  public faInfoCircle = faInfoCircle;
 
-
-  users : User[] = [];
+  public users : User[] = [];
  
-
   constructor(private userService: UserService) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.users = this.userService.getAllUsers();
   }
 
-  deleteUser(id: number): void {
+  public deleteUser(id: number): void {
     const confirmed = window.confirm('Weet je zeker dat je deze gebruiker wilt verwijderen?');
     if (confirmed) {
       this.userService.deleteUser(id);

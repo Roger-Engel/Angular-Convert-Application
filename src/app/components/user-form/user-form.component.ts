@@ -33,7 +33,7 @@ export class UserFormComponent {
     });
   }
 
-  onSubmit() {
+  public onSubmit() {
     if (this.user.id === 0) {
       this.userService.addUser(this.user);
     } else {
@@ -43,13 +43,13 @@ export class UserFormComponent {
     this.navigateAndReload();
   }
 
-  capitalizeFirstLetter(field: string) {
+  public capitalizeFirstLetter(field: string) {
     if (this.user[field]) {
       this.user[field] = this.user[field].charAt(0).toUpperCase() + this.user[field].slice(1);
     }
   }
 
-  navigateAndReload() {
+  public navigateAndReload() {
     this.router.navigate(['/users']).then(() => {
       window.location.reload();
     });
