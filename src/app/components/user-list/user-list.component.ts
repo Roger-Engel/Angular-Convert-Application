@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService} from '../../services/user.service';
-import { User} from '../../services/user.service';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import { User } from '../classes/user.class';
 
 @Component({
   selector: 'app-user-list',

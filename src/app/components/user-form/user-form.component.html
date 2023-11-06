@@ -1,5 +1,5 @@
 <div class="container border border-black border-3 rounded mt-5 shadow">
-    <h2 class="m-3 justify-content-center">{{ user.id === 0 ? 'Voeg gebruiker toe' : 'Wijzig gebruiker' }}</h2>
+    <h2 class="m-3 justify-content-center">{{ !user.id ? 'Voeg gebruiker toe' : 'Wijzig gebruiker' }}</h2>
     <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="m-3">
         <div class="form-group">
             <label for="firstNameInput">Voornaam <span class="required">*</span></label>
@@ -47,7 +47,7 @@
                 (input)="capitalizeFirstLetter('streetName')">
         </div>
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">{{ user.id === 0 ? 'Voeg toe' : 'Wijzig' }}</button>
+            <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">{{ !user.id ? 'Voeg toe' : 'Wijzig' }}</button>
             <a (click)="navigateAndReload()" class="btn btn-secondary ms-3">Terug naar gebruikerslijst</a>
         </div>
     </form>

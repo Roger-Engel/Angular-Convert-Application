@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from '../components/classes/user.class';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,10 @@ export class UserService {
     constructor() {
         const storedUsers = localStorage.getItem('users');
         if (storedUsers) {
-            this.users = JSON.parse(storedUsers);
+            const userData = JSON.parse(storedUsers);
+            userData.forEach((userData: any) => {
+                this.users.push(new User(userData)) 
+            })
         }
     }
 
@@ -46,25 +50,8 @@ export class UserService {
     }
 
     public getUserById(userId: number): User {
-        console.log('getUserById called with userId:', userId);
-
         const user = this.users.find((user) => user.id === userId);
-
         return user;
     }
 
-}
-
-export class User {
-    constructor(
-        public id: number,
-        public firstName: string,
-        public infix: string,
-        public lastName: string,
-        public postalCode: string,
-        public houseNumber: number,
-        public addition: string,
-        public city: string,
-        public streetName: string
-    ) { }
 }

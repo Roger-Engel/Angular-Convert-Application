@@ -7,11 +7,11 @@
           </div>
           <div class="card-body">
             <ng-container *ngIf="user">
-              <h5 class="card-title">{{ user.firstName }}{{ user.infix ? ' ' + user.infix : '' }} {{ user.lastName }}</h5>
-              <p><strong>Postcode:</strong> {{ user.postalCode }}</p>
-              <p><strong>Huisnummer:</strong> {{ user.houseNumber }}{{ user.addition ? ' ' + user.addition : '' }}</p>
-              <p><strong>Stad:</strong> {{ user.city }}</p>
-              <p><strong>Straatnaam:</strong> {{ user.streetName }}</p>
+              <div class="mb-3">
+                <strong>{{ user.fullName}}</strong> <br>
+                {{ user.fullAddress }} <br>
+                {{ user.postalCodeCity }} 
+              </div>
               <a routerLink="/users" class="btn btn-secondary">Terug naar gebruikerslijst</a>
               <a [routerLink]="['/user-edit', user.id]"><fa-icon [icon]="faPencil" class="ms-3 text-black"></fa-icon></a>
               <a routerLink="/users"><fa-icon [icon]="faTrash" class="ms-3 text-danger" (click)="deleteUser(user.id)"></fa-icon></a>

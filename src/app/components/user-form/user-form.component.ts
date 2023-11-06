@@ -1,7 +1,8 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserService, User } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../classes/user.class';
 
 @Component({
   selector: 'app-user-form',
@@ -10,34 +11,36 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserFormComponent {
 
-  @Input() user: User = {
-    id: 0,
-    firstName: '',
-    infix: '',
-    lastName: '',
-    postalCode: '',
-    houseNumber: 0,
-    addition: '',
-    city: '',
-    streetName: ''
-  }
+  public user: User;
 
-  @ViewChild('userForm',  {static: false}) userForm: NgForm;
+  @ViewChild('userForm', { static: false }) userForm: NgForm;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
     this.route.paramMap.subscribe((params) => {
       const userId = Number(params.get('id'));
       if (userId) {
         this.user = this.userService.getUserById(userId);
+      } else {
+        this.user = new User({
+          firstName: "",
+          infix: "",
+          lastName: "",
+          postalCode: "",
+          houseNumber: "",
+          addition: "",
+          city: "",
+          streetName: ""
+        })
       }
     });
   }
 
   public onSubmit() {
-    if (this.user.id === 0) {
-      this.userService.addUser(this.user);
+    const user = new User(this.user)
+    if (!this.user.id) {
+      this.userService.addUser(user);
     } else {
-      this.userService.updateUser(this.user);
+      this.userService.updateUser(user);
     }
     this.userForm.resetForm();
     this.navigateAndReload();
@@ -50,8 +53,6 @@ export class UserFormComponent {
   }
 
   public navigateAndReload() {
-    this.router.navigate(['/users']).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['/users']);
   }
 }

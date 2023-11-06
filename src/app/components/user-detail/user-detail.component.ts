@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService, User } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { User } from '../classes/user.class';
 
 @Component({
   selector: 'app-user-detail',
@@ -24,7 +25,9 @@ export class UserDetailComponent implements OnInit {
   public ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const userId = Number(params.get('id'));
-      this.user = this.userService.getUserById(userId);
+      if (userId) {
+          this.user = this.userService.getUserById(userId);
+      }
     });
   }
 
